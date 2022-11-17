@@ -5,7 +5,7 @@ echo Algo 自動安裝腳本 by B1ngfun
 #install_rust
     check_root
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source "HOME/.cargo/env"
+    source "$HOME/.cargo/env"
     echo "Rust installed"
 
 #install_git
