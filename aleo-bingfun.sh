@@ -1,11 +1,8 @@
 #!/bin/csh
 echo Algo 自動安裝腳本 by B1ngfun
 echo "本腳本完全開源免費，請勿使用於商業用途"
-#check_root
-    [[ $EUID != 0 ]] && echo -e "${Error} 登入root帳號獲取權限以繼續安裝 ${Green_background_prefix}sudo su${Font_color_suffix} 命令取得臨時root權限。" && exit 1
-
+read -p "請使用root帳號服用腳本，否則會出現錯誤，請按Ctrl+C取消，或任意鍵繼續安裝。"
 #install_rust
-    check_root
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source "$HOME/.cargo/env"
     echo "Rust installed"
