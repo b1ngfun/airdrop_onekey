@@ -1,4 +1,3 @@
-#!/bin/csh
 echo Algo 自動安裝腳本 by B1ngfun
 echo "本腳本完全開源免費，請勿使用於商業用途"
 read -p "請使用root帳號服用腳本，否則會出現錯誤，請按Ctrl+C取消，或任意鍵繼續安裝。"
