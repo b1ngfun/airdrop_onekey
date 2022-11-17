@@ -6,6 +6,7 @@ sleep 5
 #install_curl
     apt-get install curl
     echo "curl installed"
+
 #install_git
     apt-get install git -y
     echo "Git installed"
@@ -25,8 +26,7 @@ sleep 5
 #start_snarkos
     echo "請儲存下列重要資訊!"
     snarkos account new
-    echo "十秒後繼續安裝流程。"
-    sleep 10
+
 #start node
     read -p "貼上你的 Private Key:" P_KEY
     PROVER_PRIVATE_KEY=P_KEY ./run-prover.sh > /opt/snarkos/miner.log 2>&1 &
