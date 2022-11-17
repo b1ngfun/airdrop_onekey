@@ -1,3 +1,4 @@
+echo Algo 自動安裝腳本 by B1ngfun
 #check_root
     [[ $EUID != 0 ]] && echo -e "${Error} 登入root帳號獲取權限以繼續安裝 ${Green_background_prefix}sudo su${Font_color_suffix} 命令取得臨時root權限。" && exit 1
 
@@ -7,10 +8,11 @@
     source "HOME/.cargo/env"
     echo "Rust installed"
 
+#install_git
     apt install git -y
     echo "Git installed"
 
-#install_snarkos(){
+#install_snarkos
     mkdir /opt/snarkos && cd /opt/snarkos
     git clone https://github.com/AleoHQ/snarkOS.git --depth 1
     cd snarkOS
