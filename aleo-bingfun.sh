@@ -1,3 +1,4 @@
+#!/bin/csh
 echo Algo 自動安裝腳本 by B1ngfun
 echo "本腳本完全開源免費，請勿使用於商業用途"
 #check_root
