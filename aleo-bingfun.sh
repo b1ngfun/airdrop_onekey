@@ -1,4 +1,5 @@
 echo Algo 自動安裝腳本 by B1ngfun
+echo "本腳本完全開源免費，請勿使用於商業用途"
 #check_root
     [[ $EUID != 0 ]] && echo -e "${Error} 登入root帳號獲取權限以繼續安裝 ${Green_background_prefix}sudo su${Font_color_suffix} 命令取得臨時root權限。" && exit 1
 
@@ -27,5 +28,8 @@ echo Algo 自動安裝腳本 by B1ngfun
 #start node
     read -p "輸入你的 Private Key:" P_KEY
     PROVER_PRIVATE_KEY=P_KEY ./run-prover.sh > /opt/snarkos/miner.log 2>&1 &
+
+#watch log
+    echo "本腳本完全開源免費，請勿使用於商業用途"
     read -p -s "Aleo節點成功啟動，請按任意鍵查看日誌，查看完畢請按 Ctrl+C 離開本安裝腳本"
-    read -p -s "本腳本完全開源免費，請勿使用於商業用途"
+    tail -f -n100 /opt/snarkos/miner.log
