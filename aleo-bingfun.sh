@@ -8,7 +8,7 @@ read -p "請使用root帳號服用腳本，否則會出現錯誤，請按Ctrl+C�
     echo "Rust installed"
 
 #install_git
-    apt install git -y
+    apt-get install git -y
     echo "Git installed"
 
 #install_snarkos
