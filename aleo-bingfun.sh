@@ -1,14 +1,19 @@
-echo Algo 自動安裝腳本 by B1ngfun
+echo "Algo 自動安裝腳本 by B1ngfun"
 echo "本腳本完全開源免費，請勿使用於商業用途"
-read -p "請使用root帳號服用腳本，否則會出現錯誤，請按Ctrl+C取消，或任意鍵繼續安裝。"
+echo "請使用root帳號服用腳本，否則會出現錯誤，請按Ctrl+C取消，或任意鍵繼續安裝。"
+sleep 5
+
+#install_curl
+    apt-get install curl
+    echo "curl installed"
+#install_git
+    apt-get install git -y
+    echo "Git installed"
+
 #install_rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source "$HOME/.cargo/env"
     echo "Rust installed"
-
-#install_git
-    apt-get install git -y
-    echo "Git installed"
 
 #install_snarkos
     mkdir /opt/snarkos && cd /opt/snarkos
@@ -20,13 +25,14 @@ read -p "請使用root帳號服用腳本，否則會出現錯誤，請按Ctrl+C�
 #start_snarkos
     echo "請儲存下列重要資訊!"
     snarkos account new
-    read -p -s "儲存完成後請按任意鍵繼續安裝流程"
-
+    echo "十秒後繼續安裝流程。"
+    sleep 10
 #start node
-    read -p "輸入你的 Private Key:" P_KEY
+    read -p "貼上你的 Private Key:" P_KEY
     PROVER_PRIVATE_KEY=P_KEY ./run-prover.sh > /opt/snarkos/miner.log 2>&1 &
 
 #watch log
     echo "本腳本完全開源免費，請勿使用於商業用途"
-    read -p -s "Aleo節點成功啟動，請按任意鍵查看日誌，查看完畢請按 Ctrl+C 離開本安裝腳本"
+    echo "Aleo節點成功啟動，五秒後進入節點畫面，使用完畢請按Ctrl+C 或直接離開腳本"
+    sleep 5
     tail -f -n100 /opt/snarkos/miner.log
