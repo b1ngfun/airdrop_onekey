@@ -1,5 +1,5 @@
 aleo_key="/root/aleo_key.txt"
-
+goto aleo_one_key_menu
 full_install(){
 cat /root/aleo.txt
 #install_curl
@@ -34,7 +34,7 @@ cat /root/aleo.txt
     source /etc/profile
     echo "Aleo帳戶詳細資料已儲存於 /root/aleo.txt"
     sleep 3
-aleo_one_key_menu
+goto aleo_one_key_menu
 }
 
 aleo_client(){
@@ -42,8 +42,7 @@ aleo_client(){
     source /etc/profile
     cd /root/snarkOS
     nohup ./run-client.sh > run-client.log 2>&1 &
-aleo_one_key_menu
-
+goto aleo_one_key_menu
 }
 
 aleo_prover(){
@@ -51,11 +50,12 @@ aleo_prover(){
     source /etc/profile
     cd /root/snarkOS
     nohup ./run-prover.sh > run-prover.log 2>&1 &
+goto aleo_one_key_menu
 }
 
 aleo_address(){
     cat /root/aleo.txt
-aleo_one_key_menu
+goto aleo_one_key_menu
 }
 
 echo "本腳本完全開源免費，請勿使用於商業用途"
@@ -65,7 +65,7 @@ echo "Donates are welcome, FUCK SBF"
 echo "Ethereum,Polygon,BSC chain address"
 echo "0xcfb1ce68A1cb80AB7423622dB26Bd9966F025E17"
 echo "Binance ID內轉 : 37528377"
-aleo_one_key_menu
+
 
 aleo_one_key_menu(){
 echo "
