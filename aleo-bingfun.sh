@@ -1,8 +1,6 @@
-echo "Algo 自動安裝腳本 by B1ngfun"
-echo "本腳本完全開源免費，請勿使用於商業用途"
-echo "請使用root帳號服用腳本否則會出現錯誤，五秒後繼續安裝流程。"
-sleep 5
-
+aleo_key="/root/aleo_key.txt"
+full_install(){
+cat /root/aleo.txt
 #install_curl
     apt-get install curl
     echo "curl installed"
@@ -12,27 +10,77 @@ sleep 5
     echo "Git installed"
 
 #install_rust
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source "$HOME/.cargo/env"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source $HOME/.cargo/env
     echo "Rust installed"
-
+    
 #install_snarkos
     mkdir /opt/snarkos && cd /opt/snarkos
-    git clone https://github.com/AleoHQ/snarkOS.git --depth 1
-    cd snarkOS
-    sh ./build_ubuntu.sh
-    echo "snarkOS build succeed"
+    git clone https://github.com/AleoHQ/snarkOS.git --depth 1 /root/snarkOS
+    cd /root/snarkOS
+    bash root/snarkOS/build_ubuntu.sh
+    cargo install --path /root/snarkOS
+    if [ -f ${aleo_key} ]
+    then
+        echo "Aleo地址已存在"
+    else
+        snarkos account new > /root/aleo.txt
+        echo "snarkOS build succeed"
+    fi
+    cat /root/aleo.txt
+    PrivateKey=$(cat /root/aleo.txt | grep Private | awk '{print $3}')
+    echo export PROVER_PRIVATE_KEY=$PrivateKey >> /etc/profile
+    source /etc/profile
+    echo "Aleo帳戶詳細資料已儲存於 /root/aleo.txt"
+    sleep 3
+}
 
-#start_snarkos
-    echo "請儲存下列重要資訊!"
-    snarkos account new
+aleo_client(){
+    source $HOME/.cargo/env
+    source /etc/profile
+    cd /root/snarkOS
+    nohup ./run-client.sh > run-client.log 2>&1 &
+    echo "Aleo用戶端啟動成功"
+}
 
-#start node
-    read -p "貼上你的 Private Key:" P_KEY
-    PROVER_PRIVATE_KEY=P_KEY ./run-prover.sh > /opt/snarkos/miner.log 2>&1 &
+aleo_prover(){
+    source $HOME/.cargo/env
+    source /etc/profile
+    cd /root/snarkOS
+    nohup ./run-prover.sh > run-prover.log 2>&1 &
+    echo "Aleo節點啟動成功"
+}
 
-#watch log
-    echo "本腳本完全開源免費，請勿使用於商業用途"
-    echo "Aleo節點成功啟動，五秒後進入節點畫面，使用完畢請按Ctrl+C 或直接離開腳本"
-    sleep 5
-    tail -f -n100 /opt/snarkos/miner.log
+aleo_address(){
+    cat /root/aleo.txt
+}
+
+echo "本腳本完全開源免費，請勿使用於商業用途"
+echo "Made with Love by @b1ngfun"
+echo "Donates are welcome, FUCK SBF"
+echo "Binance ID內轉 : 37528377"
+ ———————————————————————
+1.完整安裝 aleo節點
+2.執行 Aleo client
+3.執行 Aleo prover
+4.讀取 Aleo 帳戶詳細資料
+ ———————————————————————" && echo
+read -e -p " 請輸入選項 [1-4]:" num
+case "$num" in
+1)
+    full_install
+    ;;
+2)
+    aleo_client
+    ;;
+3)
+    aleo_prover
+    ;;
+4)
+    aleo_address
+    ;;
+*)
+    echo
+    echo -e "輸入錯誤"
+    ;;
+esac
