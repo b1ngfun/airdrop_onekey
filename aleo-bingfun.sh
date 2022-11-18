@@ -59,6 +59,7 @@ echo "本腳本完全開源免費，請勿使用於商業用途"
 echo "Made with Love by @b1ngfun"
 echo "Donates are welcome, FUCK SBF"
 echo "Binance ID內轉 : 37528377"
+echo "
  ———————————————————————
 1.完整安裝 aleo節點
 2.執行 Aleo client
