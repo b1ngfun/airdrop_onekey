@@ -1,8 +1,9 @@
 aleo_key="/root/aleo_key.txt"
+
 full_install(){
 cat /root/aleo.txt
 #install_curl
-    apt-get install curl
+    apt-get install curl -y
     echo "curl installed"
 
 #install_git
@@ -33,6 +34,7 @@ cat /root/aleo.txt
     source /etc/profile
     echo "Aleo帳戶詳細資料已儲存於 /root/aleo.txt"
     sleep 3
+aleo_one_key_menu
 }
 
 aleo_client(){
@@ -40,7 +42,8 @@ aleo_client(){
     source /etc/profile
     cd /root/snarkOS
     nohup ./run-client.sh > run-client.log 2>&1 &
-    echo "Aleo用戶端啟動成功"
+aleo_one_key_menu
+
 }
 
 aleo_prover(){
@@ -48,24 +51,30 @@ aleo_prover(){
     source /etc/profile
     cd /root/snarkOS
     nohup ./run-prover.sh > run-prover.log 2>&1 &
-    echo "Aleo節點啟動成功"
 }
 
 aleo_address(){
     cat /root/aleo.txt
+aleo_one_key_menu
 }
 
 echo "本腳本完全開源免費，請勿使用於商業用途"
 echo "Made with Love by @b1ngfun"
+echo "1) What"
 echo "Donates are welcome, FUCK SBF"
+echo "Ethereum,Polygon,BSC chain address"
+echo "0xcfb1ce68A1cb80AB7423622dB26Bd9966F025E17"
 echo "Binance ID內轉 : 37528377"
+aleo_one_key_menu
+
+aleo_one_key_menu(){
 echo "
- ———————————————————————
 1.完整安裝 aleo節點
 2.執行 Aleo client
 3.執行 Aleo prover
 4.讀取 Aleo 帳戶詳細資料
- ———————————————————————" && echo
+5.離開
+" && echo
 read -e -p " 請輸入選項 [1-4]:" num
 case "$num" in
 1)
@@ -80,8 +89,13 @@ case "$num" in
 4)
     aleo_address
     ;;
+5)
+    exit
+    ;;    
+
 *)
     echo
     echo -e "輸入錯誤"
     ;;
 esac
+}
