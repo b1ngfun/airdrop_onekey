@@ -61,9 +61,6 @@ echo "Donates are welcome, FUCK SBF"
 echo "Ethereum,Polygon,BSC chain address"
 echo "0xcfb1ce68A1cb80AB7423622dB26Bd9966F025E17"
 echo "Binance ID Donate : 37528377"
-
-
-aleo_one_key_menu(){
 echo "
 1.完整安裝 aleo節點
 2.執行 Aleo client
@@ -94,4 +91,3 @@ case "$number" in
     echo -e "輸入錯誤"
     ;;
 esac
-}
