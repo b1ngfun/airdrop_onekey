@@ -74,7 +74,7 @@ echo "
 5.讀取 Aleo 帳戶詳細資料
 6.離開
 "
-read -e -p " 請輸入選項 [1-4]:" number
+read -e -p " 請輸入選項 [1-6]:" number
 case "$number" in
 1)
     full_install
