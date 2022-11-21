@@ -18,7 +18,7 @@ full_install(){
 #install_snarkos
     git clone https://github.com/AleoHQ/snarkOS.git --depth 1 /root/snarkOS
     cd /root/snarkOS
-    bash root/snarkOS/build_ubuntu.sh
+    bash ./build_ubuntu.sh
     cargo install --path /root/snarkOS
     if [ -f ${aleo_key} ]
     then
@@ -51,7 +51,7 @@ aleo_prover(){
 }
 
 aleo_log(){
-    tail -f -n100 /root/snarkOS/miner.log
+    tail -f -n100 /root/snarkOS/run-prover.log
 }
 
 aleo_address(){
