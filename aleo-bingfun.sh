@@ -1,6 +1,5 @@
 aleo_key="/root/aleo_key.txt"
 Crontab_file="/usr/bin/crontab"
-export LANG="zh_TW.UTF-8"
 
 full_install(){
 #install_curl
@@ -68,7 +67,7 @@ echo "Made with Love by @b1ngfun"
 echo "Donates are welcome, FUCK SBF"
 echo "Binance ID Donate : 37528377"
 echo "
-1.完整安裝 aleo節點
+1.完整安裝 Aleo節點
 2.執行 Aleo client
 3.執行 Aleo prover
 4.查看Log確認運作狀態
