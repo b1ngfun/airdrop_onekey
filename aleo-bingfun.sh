@@ -1,5 +1,6 @@
 aleo_key="/root/aleo_key.txt"
 Crontab_file="/usr/bin/crontab"
+export LANG="zh_TW.UTF-8"
 
 full_install(){
 #install_curl
